@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class UserSearch extends StatefulWidget {
@@ -8,9 +9,17 @@ class UserSearch extends StatefulWidget {
 }
 
 class _UserSearchState extends State<UserSearch> {
+  Dio? dio;
+  bool isLoading = false;
   bool isSearching = false;
   @override
   Widget build(BuildContext context) {
+    void initState() {
+      super.initState();
+      BaseOptions options = BaseOptions(baseUrl: 'https://api.github.com/');
+      dio = Dio(options);
+    }
+
     return Scaffold(
       appBar: isSearching
           ? AppBar(

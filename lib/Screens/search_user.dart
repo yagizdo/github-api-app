@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:github_app/Models/userModel.dart';
 
 class UserSearch extends StatefulWidget {
   UserSearch({Key? key}) : super(key: key);
@@ -12,15 +13,33 @@ class _UserSearchState extends State<UserSearch> {
   Dio? dio;
   bool isLoading = false;
   bool isSearching = false;
+  UserModel? user;
+
+  @override
+  void initState() {
+    super.initState();
+    BaseOptions options = BaseOptions(baseUrl: 'https://api.github.com/');
+    dio = Dio(options);
+    getUser();
+  }
+
+  Future<void> getUser() async {
+    print('get çalıştı');
+    setState(() {
+      isLoading = true;
+    });
+    final response = await dio?.get('users/selimyalinkilic');
+    if (response?.statusCode == 200) {
+      user = UserModel.fromJson(response?.data);
+      print('data geldi');
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    void initState() {
-      super.initState();
-      BaseOptions options = BaseOptions(baseUrl: 'https://api.github.com/');
-      dio = Dio(options);
-    }
-
     return Scaffold(
       appBar: isSearching
           ? AppBar(
@@ -61,8 +80,8 @@ class _UserSearchState extends State<UserSearch> {
                       },
                       icon: const Icon(Icons.search))
                 ]),
-      body: const Text(
-        'Username : Empty',
+      body: Text(
+        'Username : ${user?.name}',
         style: TextStyle(fontSize: 25),
       ),
     );

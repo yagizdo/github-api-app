@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:github_app/Routes/routes.dart';
 import 'package:github_app/Screens/search_user.dart';
 
 void main() {
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
+        onGenerateRoute: Routes.generateRoute,
         home: UserSearch());
   }
 }

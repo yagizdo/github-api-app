@@ -12,6 +12,7 @@ class _UserSearchState extends State<UserSearch> {
   Dio? dio;
   bool isLoading = false;
   bool isSearching = false;
+
   @override
   Widget build(BuildContext context) {
     void initState() {

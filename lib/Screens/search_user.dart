@@ -8,7 +8,7 @@ class UserSearch extends StatefulWidget {
 }
 
 class _UserSearchState extends State<UserSearch> {
-  bool isSearching = true;
+  bool isSearching = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +29,9 @@ class _UserSearchState extends State<UserSearch> {
                         suffixIcon: IconButton(
                           icon: Icon(Icons.clear),
                           onPressed: () {
-                            /* Clear the search field */
+                            setState(() {
+                              isSearching = false;
+                            });
                           },
                         ),
                         hintText: 'Search...',
@@ -38,7 +40,17 @@ class _UserSearchState extends State<UserSearch> {
                 ),
               ))
           : AppBar(
-              backgroundColor: Colors.black, title: Text('test'), actions: []),
+              backgroundColor: Colors.black,
+              title: Text('test'),
+              actions: [
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isSearching = true;
+                        });
+                      },
+                      icon: Icon(Icons.search))
+                ]),
     );
   }
 }

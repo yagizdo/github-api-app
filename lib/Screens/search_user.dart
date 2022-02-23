@@ -80,10 +80,12 @@ class _UserSearchState extends State<UserSearch> {
                       },
                       icon: const Icon(Icons.search))
                 ]),
-      body: Text(
-        'Username : ${user?.name}',
-        style: TextStyle(fontSize: 25),
-      ),
+      body: isLoading == true
+          ? CircularProgressIndicator()
+          : Text(
+              'Username : ${user?.name}',
+              style: TextStyle(fontSize: 25),
+            ),
     );
   }
 }

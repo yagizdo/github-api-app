@@ -25,9 +25,9 @@ class _UserSearchState extends State<UserSearch> {
                 child: Center(
                   child: TextField(
                     decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.search),
+                        prefixIcon: const Icon(Icons.search),
                         suffixIcon: IconButton(
-                          icon: Icon(Icons.clear),
+                          icon: const Icon(Icons.clear),
                           onPressed: () {
                             setState(() {
                               isSearching = false;
@@ -41,7 +41,7 @@ class _UserSearchState extends State<UserSearch> {
               ))
           : AppBar(
               backgroundColor: Colors.black,
-              title: Text('test'),
+              title: const Text('test'),
               actions: [
                   IconButton(
                       onPressed: () {
@@ -49,8 +49,12 @@ class _UserSearchState extends State<UserSearch> {
                           isSearching = true;
                         });
                       },
-                      icon: Icon(Icons.search))
+                      icon: const Icon(Icons.search))
                 ]),
+      body: const Text(
+        'Username : Empty',
+        style: TextStyle(fontSize: 25),
+      ),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:github_app/Models/userModel.dart';
 import 'package:github_app/Widgets/Search%20User/components/profile_comp.dart';
 
 import 'components/bio_comp.dart';
+import 'components/bottomsection_comp.dart';
 import 'components/info_comp.dart';
 
 class UserPage extends StatelessWidget {
@@ -25,6 +26,9 @@ class UserPage extends StatelessWidget {
             user: user,
           ),
           InfoComp(
+            user: user,
+          ),
+          BottomSection(
             user: user,
           ),
         ],

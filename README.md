@@ -1,6 +1,6 @@
 # Flutter - Github Api Example
 
-gI made with Flutter.
+It is a simple app where I pull the data of the user searched using Dio from github api and show it.
 
 
 ## Run Locally

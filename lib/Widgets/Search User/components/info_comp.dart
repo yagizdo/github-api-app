@@ -46,7 +46,7 @@ class InfoComp extends StatelessWidget {
           ),
           // Blog Section
           Padding(
-            padding: const EdgeInsets.only(top: 15.0),
+            padding: const EdgeInsets.only(top: 11.0),
             child: Row(
               children: [
                 const Icon(
@@ -70,7 +70,7 @@ class InfoComp extends StatelessWidget {
 
           // Twitter Section
           Padding(
-            padding: const EdgeInsets.only(top: 15.0),
+            padding: const EdgeInsets.only(top: 10.0),
             child: Row(
               children: [
                 SvgPicture.asset(
@@ -91,7 +91,40 @@ class InfoComp extends StatelessWidget {
               ],
             ),
           ),
-          Row(),
+
+          // Followers and Following Section
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: Row(
+              children: [
+                // Company
+                const Icon(
+                  Icons.person_outline_sharp,
+                  color: Colors.white38,
+                  size: 25,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 5.0),
+                  child: Text(
+                    '${user?.followers}',
+                    style: const TextStyle(color: Colors.white, fontSize: 17),
+                  ),
+                ),
+                Text(
+                  ' followers  .  ',
+                  style: const TextStyle(color: Colors.grey, fontSize: 17),
+                ),
+                Text(
+                  '${user?.following}',
+                  style: const TextStyle(color: Colors.white, fontSize: 17),
+                ),
+                Text(
+                  ' following',
+                  style: const TextStyle(color: Colors.grey, fontSize: 17),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

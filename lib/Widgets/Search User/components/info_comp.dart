@@ -17,7 +17,7 @@ class InfoComp extends StatelessWidget {
               // Company
               const Icon(
                 Icons.apartment,
-                color: Colors.grey,
+                color: Colors.white38,
                 size: 25,
               ),
               Padding(
@@ -31,7 +31,7 @@ class InfoComp extends StatelessWidget {
               // Location
               const Icon(
                 Icons.location_on_outlined,
-                color: Colors.grey,
+                color: Colors.white38,
                 size: 25,
               ),
               Padding(
@@ -43,7 +43,28 @@ class InfoComp extends StatelessWidget {
               ),
             ],
           ),
-          Row(),
+          Padding(
+            padding: const EdgeInsets.only(top: 15.0),
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.link,
+                  color: Colors.white38,
+                  size: 25,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 5.0),
+                  child: Text(
+                    user?.blog,
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ],
+            ),
+          ),
           Row(),
           Row(),
         ],

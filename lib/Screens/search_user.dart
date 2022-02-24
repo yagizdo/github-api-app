@@ -16,14 +16,13 @@ class _UserSearchState extends State<UserSearch> {
   bool isLoading = false;
   bool isSearching = false;
   UserModel? user;
-  final _debouncer = Debouncer(milliseconds: 300);
+  final _debouncer = Debouncer(milliseconds: 500);
 
   @override
   void initState() {
     super.initState();
     BaseOptions options = BaseOptions(baseUrl: 'https://api.github.com/');
     dio = Dio(options);
-    getUser('yagizdo');
   }
 
   Future<void> getUser(String name) async {
@@ -57,7 +56,7 @@ class _UserSearchState extends State<UserSearch> {
                 child: Center(
                   child: TextField(
                     onChanged: (word) {
-                      _debouncer.run(() => (word));
+                      _debouncer.run(() => (getUser(word)));
                       print('kelime $word');
                     },
                     decoration: InputDecoration(

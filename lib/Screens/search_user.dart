@@ -77,7 +77,7 @@ class _UserSearchState extends State<UserSearch> {
               ))
           : AppBar(
               backgroundColor: Colors.black,
-              title: const Text('test'),
+              title: const Text('Search User'),
               actions: [
                   IconButton(
                       onPressed: () {

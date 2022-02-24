@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:github_app/Models/userModel.dart';
 
 import '../Utils/debouncer.dart';
+import '../Widgets/Search User/sorry_widget.dart';
 
 class UserSearch extends StatefulWidget {
   UserSearch({Key? key}) : super(key: key);
@@ -93,28 +94,7 @@ class _UserSearchState extends State<UserSearch> {
       body: isLoading == true
           ? CircularProgressIndicator()
           : user?.name == null
-              ? Center(
-                  child: Container(
-                      alignment: Alignment.center,
-                      color: Colors.black,
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 250),
-                        child: Column(
-                          children: const [
-                            Text(
-                              'Sorry!',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 50),
-                            ),
-                            Text(
-                              'User not found!',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 20),
-                            )
-                          ],
-                        ),
-                      )),
-                )
+              ? const SorryWidget()
               : Text(
                   'Username : ${user?.name}',
                   style: TextStyle(fontSize: 25),

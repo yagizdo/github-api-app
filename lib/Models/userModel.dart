@@ -102,7 +102,7 @@ class UserModel {
         location: json["location"] ?? 'No Location',
         email: json["email"],
         hireable: json["hireable"],
-        bio: json["bio"] ?? 'No bio data',
+        bio: json["bio"].replaceAll('\n', '') ?? 'No bio data',
         twitterUsername: json["twitter_username"] ?? 'No data',
         publicRepos: json["public_repos"],
         publicGists: json["public_gists"],

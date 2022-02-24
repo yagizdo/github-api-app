@@ -3,6 +3,7 @@ import 'package:github_app/Models/userModel.dart';
 import 'package:github_app/Widgets/Search%20User/components/profile_comp.dart';
 
 import 'components/bio_comp.dart';
+import 'components/info_comp.dart';
 
 class UserPage extends StatelessWidget {
   UserPage({Key? key, required this.user}) : super(key: key);
@@ -21,6 +22,9 @@ class UserPage extends StatelessWidget {
             user: user,
           ),
           BioComp(
+            user: user,
+          ),
+          InfoComp(
             user: user,
           ),
         ],

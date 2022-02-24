@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:github_app/Models/userModel.dart';
+import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 
 import '../Utils/debouncer.dart';
 import '../Widgets/Search User/sorry_widget.dart';
@@ -106,7 +107,27 @@ class _UserSearchState extends State<UserSearch> {
                         icon: const Icon(Icons.search))
                   ]),
         body: isLoading == true
-            ? CircularProgressIndicator()
+            ? Container(
+                alignment: Alignment.center,
+                color: Colors.black,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 300,
+                      height: 300,
+                      child: LiquidCircularProgressIndicator(
+                        value: 0.7,
+                        center: Text(
+                          'Loading..',
+                          style: TextStyle(fontSize: 20, color: Colors.white),
+                        ),
+                        backgroundColor: Colors.white,
+                      ),
+                    )
+                  ],
+                ),
+              )
             : errorMessage != null || user?.name == null
                 ? SorryWidget()
                 : UserPage(

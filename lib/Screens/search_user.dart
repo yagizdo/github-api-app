@@ -91,7 +91,26 @@ class _UserSearchState extends State<UserSearch> {
           ? CircularProgressIndicator()
           : user?.name == null
               ? Center(
-                  child: Text('User not found!'),
+                  child: Container(
+                      alignment: Alignment.center,
+                      color: Colors.black,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 250),
+                        child: Column(
+                          children: const [
+                            Text(
+                              'Sorry!',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 50),
+                            ),
+                            Text(
+                              'User not found!',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            )
+                          ],
+                        ),
+                      )),
                 )
               : Text(
                   'Username : ${user?.name}',

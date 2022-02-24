@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:github_app/Models/userModel.dart';
 
+import '../Utils/debouncer.dart';
+
 class UserSearch extends StatefulWidget {
   UserSearch({Key? key}) : super(key: key);
 
@@ -14,6 +16,7 @@ class _UserSearchState extends State<UserSearch> {
   bool isLoading = false;
   bool isSearching = false;
   UserModel? user;
+  final _debouncer = Debouncer(milliseconds: 300);
 
   @override
   void initState() {
@@ -53,6 +56,10 @@ class _UserSearchState extends State<UserSearch> {
                     borderRadius: BorderRadius.circular(5)),
                 child: Center(
                   child: TextField(
+                    onChanged: (word) {
+                      _debouncer.run(() => (word));
+                      print('kelime $word');
+                    },
                     decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.search),
                         suffixIcon: IconButton(

@@ -18,6 +18,7 @@ class _UserSearchState extends State<UserSearch> {
   bool isSearching = false;
   UserModel? user;
   final _debouncer = Debouncer(milliseconds: 500);
+  String? errorMessage;
 
   @override
   void initState() {
@@ -31,15 +32,25 @@ class _UserSearchState extends State<UserSearch> {
     setState(() {
       isLoading = true;
     });
-    final response = await dio?.get('users/$name');
-    dio?.options.headers["user-agent"] = "request";
-    if (response?.statusCode == 200) {
-      user = UserModel.fromJson(response?.data);
-      print('data geldi');
+    try {
+      final response = await dio?.get('users/$name');
+      dio?.options.headers["user-agent"] = "request";
+      if (response?.statusCode == 200) {
+        user = UserModel.fromJson(response?.data);
+        print('data geldi');
+      }
+      setState(() {
+        isLoading = false;
+      });
+    } on DioError catch (e) {
+      setState(() {
+        errorMessage = e.response?.statusMessage;
+        isLoading = false;
+      });
+      print('Error Message ${e.response?.statusMessage}');
+      print(e.response?.headers);
+      print(e.response?.requestOptions);
     }
-    setState(() {
-      isLoading = false;
-    });
   }
 
   @override
@@ -93,8 +104,8 @@ class _UserSearchState extends State<UserSearch> {
                 ]),
       body: isLoading == true
           ? CircularProgressIndicator()
-          : user?.name == null
-              ? const SorryWidget()
+          : errorMessage != null || user?.name == null
+              ? SorryWidget()
               : Text(
                   'Username : ${user?.name}',
                   style: TextStyle(fontSize: 25),

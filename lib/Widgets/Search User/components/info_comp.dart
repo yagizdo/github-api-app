@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:github_app/Models/userModel.dart';
 
 class InfoComp extends StatelessWidget {
@@ -43,6 +44,7 @@ class InfoComp extends StatelessWidget {
               ),
             ],
           ),
+          // Blog Section
           Padding(
             padding: const EdgeInsets.only(top: 15.0),
             child: Row(
@@ -65,7 +67,30 @@ class InfoComp extends StatelessWidget {
               ],
             ),
           ),
-          Row(),
+
+          // Twitter Section
+          Padding(
+            padding: const EdgeInsets.only(top: 15.0),
+            child: Row(
+              children: [
+                SvgPicture.asset(
+                  'lib/Icons/twittericon.svg',
+                  color: Colors.white38,
+                  width: 25,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 5.0),
+                  child: Text(
+                    '@${user?.twitterUsername}',
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ],
+            ),
+          ),
           Row(),
         ],
       ),

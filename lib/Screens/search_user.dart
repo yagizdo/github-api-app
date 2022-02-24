@@ -39,9 +39,11 @@ class _UserSearchState extends State<UserSearch> {
       if (response?.statusCode == 200) {
         user = UserModel.fromJson(response?.data);
         print('data geldi');
+        print('data ${user?.name}');
       }
       setState(() {
         isLoading = false;
+        errorMessage = null;
       });
     } on DioError catch (e) {
       setState(() {

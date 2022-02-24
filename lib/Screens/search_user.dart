@@ -66,6 +66,7 @@ class _UserSearchState extends State<UserSearch> {
                           onPressed: () {
                             setState(() {
                               isSearching = false;
+                              isLoading = false;
                             });
                           },
                         ),
@@ -88,10 +89,14 @@ class _UserSearchState extends State<UserSearch> {
                 ]),
       body: isLoading == true
           ? CircularProgressIndicator()
-          : Text(
-              'Username : ${user?.name}',
-              style: TextStyle(fontSize: 25),
-            ),
+          : user?.name == null
+              ? Center(
+                  child: Text('User not found!'),
+                )
+              : Text(
+                  'Username : ${user?.name}',
+                  style: TextStyle(fontSize: 25),
+                ),
     );
   }
 }

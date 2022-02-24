@@ -20,15 +20,15 @@ class _UserSearchState extends State<UserSearch> {
     super.initState();
     BaseOptions options = BaseOptions(baseUrl: 'https://api.github.com/');
     dio = Dio(options);
-    getUser();
+    getUser('yagizdo');
   }
 
-  Future<void> getUser() async {
+  Future<void> getUser(String name) async {
     print('get çalıştı');
     setState(() {
       isLoading = true;
     });
-    final response = await dio?.get('users/selimyalinkilic');
+    final response = await dio?.get('users/$name');
     if (response?.statusCode == 200) {
       user = UserModel.fromJson(response?.data);
       print('data geldi');

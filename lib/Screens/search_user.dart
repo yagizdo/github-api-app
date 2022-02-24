@@ -4,6 +4,7 @@ import 'package:github_app/Models/userModel.dart';
 
 import '../Utils/debouncer.dart';
 import '../Widgets/Search User/sorry_widget.dart';
+import '../Widgets/Search User/user_page.dart';
 
 class UserSearch extends StatefulWidget {
   UserSearch({Key? key}) : super(key: key);
@@ -56,60 +57,58 @@ class _UserSearchState extends State<UserSearch> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: isSearching
-          ? AppBar(
-              // The search area here
-              backgroundColor: Colors.black,
-              title: Container(
-                width: double.infinity,
-                height: 40,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5)),
-                child: Center(
-                  child: TextField(
-                    onChanged: (word) {
-                      if (word != '') {
-                        _debouncer.run(() => (getUser(word)));
-                        print('kelime $word');
-                      }
-                    },
-                    decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.search),
-                        suffixIcon: IconButton(
-                          icon: const Icon(Icons.clear),
-                          onPressed: () {
-                            setState(() {
-                              isSearching = false;
-                              isLoading = false;
-                            });
-                          },
-                        ),
-                        hintText: 'Search...',
-                        border: InputBorder.none),
-                  ),
-                ),
-              ))
-          : AppBar(
-              backgroundColor: Colors.black,
-              title: const Text('Search User'),
-              actions: [
-                  IconButton(
-                      onPressed: () {
-                        setState(() {
-                          isSearching = true;
-                        });
+        appBar: isSearching
+            ? AppBar(
+                // The search area here
+                backgroundColor: Colors.black,
+                title: Container(
+                  width: double.infinity,
+                  height: 40,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5)),
+                  child: Center(
+                    child: TextField(
+                      onChanged: (word) {
+                        if (word != '') {
+                          _debouncer.run(() => (getUser(word)));
+                          print('kelime $word');
+                        }
                       },
-                      icon: const Icon(Icons.search))
-                ]),
-      body: isLoading == true
-          ? CircularProgressIndicator()
-          : errorMessage != null || user?.name == null
-              ? SorryWidget()
-              : Text(
-                  'Username : ${user?.name}',
-                  style: TextStyle(fontSize: 25),
-                ),
-    );
+                      decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.search),
+                          suffixIcon: IconButton(
+                            icon: const Icon(Icons.clear),
+                            onPressed: () {
+                              setState(() {
+                                isSearching = false;
+                                isLoading = false;
+                              });
+                            },
+                          ),
+                          hintText: 'Search...',
+                          border: InputBorder.none),
+                    ),
+                  ),
+                ))
+            : AppBar(
+                backgroundColor: Colors.black,
+                title: const Text('Search User'),
+                actions: [
+                    IconButton(
+                        onPressed: () {
+                          setState(() {
+                            isSearching = true;
+                          });
+                        },
+                        icon: const Icon(Icons.search))
+                  ]),
+        body: isLoading == true
+            ? CircularProgressIndicator()
+            : errorMessage != null || user?.name == null
+                ? SorryWidget()
+                : UserPage(
+                    user: user,
+                  ));
   }
 }

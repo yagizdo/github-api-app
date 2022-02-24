@@ -31,6 +31,7 @@ class _UserSearchState extends State<UserSearch> {
       isLoading = true;
     });
     final response = await dio?.get('users/$name');
+    dio?.options.headers["user-agent"] = "request";
     if (response?.statusCode == 200) {
       user = UserModel.fromJson(response?.data);
       print('data geldi');
@@ -56,8 +57,10 @@ class _UserSearchState extends State<UserSearch> {
                 child: Center(
                   child: TextField(
                     onChanged: (word) {
-                      _debouncer.run(() => (getUser(word)));
-                      print('kelime $word');
+                      if (word != '') {
+                        _debouncer.run(() => (getUser(word)));
+                        print('kelime $word');
+                      }
                     },
                     decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.search),

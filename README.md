@@ -41,8 +41,8 @@ https://user-images.githubusercontent.com/31064552/155598752-764c5813-26de-4071-
 ## Screenshots
 
 ### Search User
-<img align="center" width="400" height="900" src="screenshots/yagizdoss.png">
-<img align="center" width="400" height="900" src="screenshots/oguzshss.png">
+<img align="center" width="500" height="900" src="screenshots/yagizdoss.png">
+<img align="center" width="500" height="900" src="screenshots/oguzshss.png">
 
 
 

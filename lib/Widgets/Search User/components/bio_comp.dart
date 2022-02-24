@@ -7,9 +7,12 @@ class BioComp extends StatelessWidget {
   UserModel? user;
   @override
   Widget build(BuildContext context) {
-    return Text(
-      user?.bio,
-      style: TextStyle(color: Colors.white, fontSize: 20),
+    return Padding(
+      padding: const EdgeInsets.only(top: 20.0),
+      child: Text(
+        user?.bio,
+        style: TextStyle(color: Colors.white, fontSize: 20),
+      ),
     );
   }
 }
